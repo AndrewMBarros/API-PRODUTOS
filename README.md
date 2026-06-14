@@ -1,42 +1,39 @@
+# 📦 API de Produtos
+
+![.NET](https://img.shields.io/badge/.NET-8.0-purple)
+![C#](https://img.shields.io/badge/C%23-Language-blue)
+![Swagger](https://img.shields.io/badge/Swagger-OpenAPI-green)
+![Status](https://img.shields.io/badge/Status-Concluído-success)
+
+API REST desenvolvida com **ASP.NET Core Web API** para gerenciamento de produtos, implementando operações completas de CRUD (*Create, Read, Update e Delete*).
 
 ---
 
-# 📄 README.md — API de Produtos (ASP.NET Core)
+## 🚀 Objetivo
 
-```md
-# 📦 API de Produtos - ASP.NET Core Web API
+Este projeto foi desenvolvido com o objetivo de praticar os principais conceitos de construção de APIs REST utilizando ASP.NET Core, incluindo:
 
-Este projeto é uma API REST desenvolvida em C# com ASP.NET Core.
-A API permite gerenciar produtos utilizando operações básicas de CRUD.
-
----
-
-## 🚀 Tecnologias utilizadas
-
-- C#
-- ASP.NET Core Web API
-- Swagger (Swashbuckle)
-- JSON
+* Criação de endpoints RESTful
+* Manipulação de dados via HTTP
+* Boas práticas de organização de código
+* Tratamento de respostas HTTP
+* Documentação automática com Swagger
+* Validação de regras de negócio
 
 ---
 
-## 📌 Objetivo do projeto
+## 🛠️ Tecnologias Utilizadas
 
-O objetivo deste projeto é praticar o desenvolvimento de uma API REST, incluindo:
-
-- Criação de produtos
-- Listagem de produtos
-- Busca por ID
-- Atualização de produtos
-- Remoção de produtos
-- Validação de duplicação de ID
+* C#
+* ASP.NET Core Web API
+* Swagger / OpenAPI
+* JSON
 
 ---
 
-## 📁 Estrutura do projeto
+## 📁 Estrutura do Projeto
 
-```
-
+```text
 ApiProdutos
 │
 ├── Controllers
@@ -47,8 +44,7 @@ ApiProdutos
 │
 ├── Program.cs
 └── appsettings.json
-
-````
+```
 
 ---
 
@@ -59,165 +55,185 @@ ApiProdutos
 ```csharp
 public class Produto
 {
-public int Id { get; set; }
-public string Nome { get; set; }
-public decimal Preco { get; set; }
+    public int Id { get; set; }
+    public string Nome { get; set; }
+    public decimal Preco { get; set; }
 }
-````
+```
 
 ---
 
-## 🌐 Endpoints da API
+## 🌐 Endpoints Disponíveis
 
-### 🔵 Listar todos os produtos
+### 📋 Listar todos os produtos
 
-```
+```http
 GET /api/produtos
 ```
 
-✔ Retorna todos os produtos cadastrados
+Retorna todos os produtos cadastrados.
 
 ---
 
-### 🔵 Buscar produto por ID
+### 🔍 Buscar produto por ID
 
-```
+```http
 GET /api/produtos/{id}
 ```
 
-✔ Retorna um produto específico
+Exemplo:
+
+```http
+GET /api/produtos/1
+```
+
+Retorna o produto correspondente ao ID informado.
 
 ---
 
-### 🟢 Criar produto
+### ➕ Cadastrar produto
 
-```
+```http
 POST /api/produtos
 ```
 
-## ### Exemplo de requisição:
+Exemplo de requisição:
 
 ```json
 {
-"id": 2,
-"nome": "Mouse",
-"preco": 80
+  "id": 2,
+  "nome": "Mouse",
+  "preco": 80.00
 }
 ```
 
-✔ Não permite IDs duplicados
-
 ---
 
-### 🟡 Atualizar produto
+### ✏️ Atualizar produto
 
-```
+```http
 PUT /api/produtos/{id}
 ```
 
-## ### Exemplo:
+Exemplo de requisição:
 
 ```json
 {
-"id": 2,
-"nome": "Mouse Gamer",
-"preco": 150
+  "id": 2,
+  "nome": "Mouse Gamer",
+  "preco": 150.00
 }
 ```
 
-✔ Atualiza nome e preço do produto
+Atualiza as informações do produto informado.
 
 ---
 
-### 🔴 Deletar produto
+### 🗑️ Remover produto
 
-```
+```http
 DELETE /api/produtos/{id}
 ```
 
-✔ Remove o produto da lista
+Remove o produto da coleção.
 
 ---
 
-## ⚠️ Regras da API
+## ⚠️ Regras de Negócio
 
-- Não é permitido cadastrar produtos com ID duplicado
-- Os dados são armazenados em memória (List)
-- Os dados são perdidos ao reiniciar a aplicação
-- Produtos inexistentes retornam erro 404
+* Não é permitido cadastrar produtos com IDs duplicados.
+* Produtos inexistentes retornam **404 Not Found**.
+* Os dados são armazenados em memória utilizando uma lista.
+* Os registros são perdidos ao reiniciar a aplicação.
 
 ---
 
-## 🧪 Como executar o projeto
+## ▶️ Executando o Projeto
 
-### 1. Abrir o terminal na pasta do projeto
+### 1. Clone o repositório
 
+```bash
+git clone https://github.com/seu-usuario/ApiProdutos.git
 ```
+
+### 2. Acesse a pasta do projeto
+
+```bash
 cd ApiProdutos
 ```
 
-### 2. Executar a aplicação
+### 3. Execute a aplicação
 
-```
+```bash
 dotnet run
-```
-
-### 3. Acessar o Swagger
-
-```
-[https://localhost:xxxx/swagger](https://localhost:xxxx/swagger)
 ```
 
 ---
 
-## 🔁 Fluxo da API
+## 📖 Documentação da API
 
+Após iniciar a aplicação, acesse:
+
+```text
+https://localhost:xxxx/swagger
 ```
-Cliente (Swagger)
-↓
-Controller (API)
-↓
-Lista em memória
-↓
+
+A interface Swagger permite visualizar e testar todos os endpoints da API diretamente pelo navegador.
+
+---
+
+## 🔄 Fluxo da Aplicação
+
+```text
+Cliente
+   │
+   ▼
+ProdutosController
+   │
+   ▼
+Lista em Memória
+   │
+   ▼
 Resposta JSON
 ```
 
 ---
 
-## 📊 Funcionalidades implementadas
+## ✅ Funcionalidades Implementadas
 
-✔ CRUD completo
-✔ Validação de ID duplicado
-✔ Busca por ID
-✔ Swagger para testes
-✔ API REST funcional
+* [x] CRUD completo
+* [x] Cadastro de produtos
+* [x] Consulta de produtos
+* [x] Busca por ID
+* [x] Atualização de dados
+* [x] Exclusão de registros
+* [x] Validação de ID duplicado
+* [x] Retornos HTTP apropriados
+* [x] Integração com Swagger
+
+---
+
+## 📈 Melhorias Futuras
+
+* Integração com SQL Server
+* Entity Framework Core
+* DTOs
+* AutoMapper
+* Autenticação JWT
+* Paginação de resultados
+* Versionamento da API
+* Testes unitários
+* Persistência em banco de dados
 
 ---
 
 ## 👨‍💻 Autor
 
-Projeto desenvolvido para fins de estudo de APIs REST com ASP.NET Core e C#.
+Desenvolvido para fins de estudo e aprimoramento em desenvolvimento de APIs REST com ASP.NET Core.
 
 ---
 
-## 📌 Observações
+## 📄 Licença
 
-- Não utiliza banco de dados
-- Dados são temporários (memória)
-- Ideal para aprendizado de APIs REST
+Este projeto está disponível para fins educacionais e aprendizado.
 
-```
-
----
-
-# 🚀 Se quiser melhorar ainda mais
-
-Posso te ajudar a transformar isso em nível profissional com:
-
-- banco de dados (SQL Server)
-- Entity Framework
-- autenticação (login JWT)
-- versão “API de empresa”
-
-Só me fala 👍
-```
